@@ -47,9 +47,11 @@
 
     function dispProblemSetFunc(dispProblemSet){
         var str = '';
-        str += "Problem set list<br>";
+        // str += "Problem set list<br>";
+        str += "Character list<br>";
         str += "<table><tbody>";
-        str += "<tr><th>Index</th><td>Set</td></tr>";
+        // str += "<tr><th>Index</th><td>Set</td></tr>";
+        str += "<tr><th>Index</th><td>Characters used</td></tr>";
         var i = -1;
         characters.forEach(element => {
             i++;
