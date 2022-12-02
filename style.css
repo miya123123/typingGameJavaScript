@@ -29,12 +29,30 @@ body{
 }
 
 #disp_problem_set{
-
+    font-size: 25px;
+    /* overflow-wrap: break-word; */
+    /* font-family: menlo, monaco; */
+    /* font-family: menlo, monaco; */
 }
 
 th,td {
-    border: solid 1px;          /* 枠線指定 */
+    border: solid 2px;          /* 枠線指定 */
+    font-size: 20px;
 }
+
+.caption{
+    font-size: 30px;
+    /* font-weight: bold; */
+}
+.index{
+    width: 200px;
+}
+td{
+    font-size: 20px;
+}
+/* .character_set_value{
+    font-size: 20px;
+} */
 
 table {
     border-collapse:  collapse; /* セルの線を重ねる */

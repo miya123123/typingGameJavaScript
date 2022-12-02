@@ -31,15 +31,15 @@
         '!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\1234567890', //4
         // 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~¥|`@{[;+:*]},<.>/?_\\', //5
         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\', //5
-        '\\', //6
+        // '\\', //6
         // 'œ∑´®†¥¨', //7
-        'œ∑´®†¨', //7
+        // 'œ∑´®†¨', //7
         // '!"#$%&\'()-=^~¥|`@{[;+:*]},<.>/?_\\œ∑´®†¥¨', //8
-        '!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\œ∑´®†¨', //8
+        // '!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\œ∑´®†¨', //8
         // '`@09-=~^|¥{[}]\\', //9
-        '`@09-=~^|{[}]\\', //9
-        '!"#$%&\'()-=^~|`@{[;;;;+::::*]},<.>/?_\\', //10
-        '!"#$%&\'()-=^~|`@{[;;;;+::::*]},<.>/?_\\1234567890', //11
+        // '`@09-=~^|{[}]\\', //9
+        // '!"#$%&\'()-=^~|`@{[;;;;+::::*]},<.>/?_\\', //10
+        // '!"#$%&\'()-=^~|`@{[;;;;+::::*]},<.>/?_\\1234567890', //11
     ]
 
     const dispProblemSet = document.getElementById('disp_problem_set');
@@ -48,14 +48,18 @@
     function dispProblemSetFunc(dispProblemSet){
         var str = '';
         // str += "Problem set list<br>";
-        str += "Character list<br>";
+        // str += "<br>";
+        // str += "Character set list<br>";
+        str += "<span class=\"caption\">Character set list<br></span>";
         str += "<table><tbody>";
         // str += "<tr><th>Index</th><td>Set</td></tr>";
-        str += "<tr><th>Index</th><td>Characters used</td></tr>";
+        // str += "<tr><th>Index</th><td>Character set</td></tr>";
+        str += "<tr><th class=\"index\">Index</th><th class =\"character_set\">Character set</td></th></tr>";
         var i = -1;
         characters.forEach(element => {
             i++;
-            str += `<tr><th>${i}</th><td>${element}</td></tr>`;
+            // str += `<tr><th>${i}</th><td>${element}</td></tr>`;
+            str += `<tr><td>${i}</td><td class = \"character_set_value\">${element}</td></tr>`;
         });
         str += "</tbody></table>";
         console.log(str);
@@ -176,7 +180,8 @@
                 const correctWordsRatio = countCorrectWords / WORDS_LENGTH * 100;
                 const correctCharactersRatio = countCorrectCharacters / TOTAL_CHARACTERS * 100;
                 result.innerHTML = `Finished! ${elapsedTime} seconds!<br><br>` +
-                `Number of correct words / total words: ${countCorrectWords} / ${WORDS_LENGTH} (${correctWordsRatio.toFixed(2)}%)<br><br>` +
+                // `Number of correct words / total words: ${countCorrectWords} / ${WORDS_LENGTH} (${correctWordsRatio.toFixed(2)}%)<br><br>` +
+                `Number of correct problem / total problems: ${countCorrectWords} / ${WORDS_LENGTH} (${correctWordsRatio.toFixed(2)}%)<br><br>` +
                 `Number of correct characters / total characters: ${countCorrectCharacters} / ${TOTAL_CHARACTERS} (${correctCharactersRatio.toFixed(2)}%)<br><br>` +
                  "<br><br> Press space key to reload!";
                 isEnd = true;
