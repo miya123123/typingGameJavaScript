@@ -37,18 +37,21 @@ body{
 
 th,td {
     border: solid 2px;          /* 枠線指定 */
-    font-size: 20px;
+    font-size: 22px;
+    height: 45px;
 }
 
 .caption{
     font-size: 30px;
     /* font-weight: bold; */
+    line-height: 50px;
 }
 .index{
-    width: 200px;
+    /* width: 200px; */
+    width: 180px;
 }
 td{
-    font-size: 20px;
+    /* font-size: 20px; */
 }
 /* .character_set_value{
     font-size: 20px;
