@@ -42,7 +42,22 @@
         '!"#$%&\'()-=^~|`@{[;;;;+::::*]},<.>/?_\\1234567890', //11
     ]
 
-    const result = document.getElementById('result');
+    // const result = document.getElementById('result');
+                // result.innerHTML = `Finished! ${elapsedTime} seconds!<br><br>` +
+                // `Number of correct words / total words: ${countCorrectWords} / ${WORDS_LENGTH} (${correctWordsRatio.toFixed(2)}%)<br><br>` +
+                // `Number of correct characters / total characters: ${countCorrectCharacters} / ${TOTAL_CHARACTERS} (${correctCharactersRatio.toFixed(2)}%)<br><br>` +
+                //  "<br><br> Press space key to reload!";
+    const dispProblemSet = document.getElementById('disp_problem_set');
+    var str = '';
+    str += "Problem set list<br>";
+    var i = -1;
+    characters.forEach(element => {
+        i++;
+        str += i + ":" + element + '<br>';
+    });
+    console.log(str);
+
+    dispProblemSet.innerHTML = str;
 
 
     function dispWords(){
@@ -80,6 +95,7 @@
 
     const target = document.getElementById('target');
     const title = document.getElementById('title');
+    const result = document.getElementById('result');
     // document.addEventListener('click', () => {
     target.style.fontSize = "30px";
     document.addEventListener('keydown', e => {
@@ -110,6 +126,7 @@
             return;
         }
         title.textContent = "";
+        dispProblemSet.textContent = "";
         TOTAL_CHARACTERS = WORD_LENGTH * WORDS_LENGTH;
         input.style.display = "none";
         startTime = Date.now();
