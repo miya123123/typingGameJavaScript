@@ -38,9 +38,12 @@
         '!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\œ∑´®†¨', //8
         // '`@09-=~^|¥{[}]\\', //9
         '`@09-=~^|{[}]\\', //9
-        // '!"#$%&\'()-=^~|`@{[;;;;+::::*]},<.>/?_\\', //10
-        // '!"#$%&\'()-=^~|`@{[;;;;+::::*]},<.>/?_\\1234567890', //11
+        '!"#$%&\'()-=^~|`@{[;;;;+::::*]},<.>/?_\\', //10
+        '!"#$%&\'()-=^~|`@{[;;;;+::::*]},<.>/?_\\1234567890', //11
     ]
+
+    document.getElementById('result');
+
 
     function dispWords(){
         for(let row = 0; row < words.length; row++){
@@ -57,6 +60,7 @@
     let isEnd = false;
 
     let PROBLEM_INDEX;
+    let PROBLEM_INDEX_MAX;
     let WORD_LENGTH;
     let WORDS_LENGTH;
     let TOTAL_CHARACTERS;
@@ -86,10 +90,11 @@
 
         var input = document.getElementById("input");
         PROBLEM_INDEX = Number(input.querySelector("input[name=problem_set]").value);
+        PROBLEM_INDEX_MAX = characters.length - 1;
         // WORD_LENGTH = Number(input.querySelector("input[name=length_word]").value);
         WORD_LENGTH = 10;
         WORDS_LENGTH = Number(input.querySelector("input[name=total_problem]").value);
-        if(!(PROBLEM_INDEX >= 0 && PROBLEM_INDEX <= 9)){
+        if(!(PROBLEM_INDEX >= 0 && PROBLEM_INDEX <= PROBLEM_INDEX_MAX)){
             audioMiss.currentTime = 0;
             audioMiss.play();
             return;
