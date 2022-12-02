@@ -42,7 +42,7 @@
         '!"#$%&\'()-=^~|`@{[;;;;+::::*]},<.>/?_\\1234567890', //11
     ]
 
-    document.getElementById('result');
+    const result = document.getElementById('result');
 
 
     function dispWords(){
@@ -150,7 +150,7 @@
             wrongWordFlag = false;
             if(words.length === 0){
                 const elapsedTime = ((Date.now() - startTime) / 1000).toFixed(2);
-                const result = document.getElementById('result');
+                // const result = document.getElementById('result');
                 //result.textContent = `Finished! ${elapsedTime} seconds!`;
                 const correctWordsRatio = countCorrectWords / WORDS_LENGTH * 100;
                 const correctCharactersRatio = countCorrectCharacters / TOTAL_CHARACTERS * 100;
