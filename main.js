@@ -42,22 +42,24 @@
         '!"#$%&\'()-=^~|`@{[;;;;+::::*]},<.>/?_\\1234567890', //11
     ]
 
-    // const result = document.getElementById('result');
-                // result.innerHTML = `Finished! ${elapsedTime} seconds!<br><br>` +
-                // `Number of correct words / total words: ${countCorrectWords} / ${WORDS_LENGTH} (${correctWordsRatio.toFixed(2)}%)<br><br>` +
-                // `Number of correct characters / total characters: ${countCorrectCharacters} / ${TOTAL_CHARACTERS} (${correctCharactersRatio.toFixed(2)}%)<br><br>` +
-                //  "<br><br> Press space key to reload!";
     const dispProblemSet = document.getElementById('disp_problem_set');
-    var str = '';
-    str += "Problem set list<br>";
-    var i = -1;
-    characters.forEach(element => {
-        i++;
-        str += i + ":" + element + '<br>';
-    });
-    console.log(str);
+    dispProblemSetFunc(dispProblemSet);
 
-    dispProblemSet.innerHTML = str;
+    function dispProblemSetFunc(dispProblemSet){
+        var str = '';
+        str += "Problem set list<br>";
+        str += "<table><tbody>";
+        str += "<tr><th>Index</th><td>Set</td></tr>";
+        var i = -1;
+        characters.forEach(element => {
+            i++;
+            str += `<tr><th>${i}</th><td>${element}</td></tr>`;
+        });
+        str += "</tbody></table>";
+        console.log(str);
+        dispProblemSet.innerHTML = str;
+    }
+
 
 
     function dispWords(){
