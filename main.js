@@ -7,17 +7,17 @@
         loc = 0;
     }
 
-    function createWords(characters, word_length, words_length){
+    function createWords(characterSet, word_length, words_length){
         let ch;
-        let word;
+        let _word;
         for(let j = 0; j < words_length; j++){
-            word = '';
+            _word = '';
             for(let i = 0; i < word_length; i++){
-                ch = characters[Math.floor(Math.random() * characters.length)];
-                word += ch;
+                ch = characterSet[Math.floor(Math.random() * characterSet.length)];
+                _word += ch;
                 // word += 'a';
             }
-            words.push(word);
+            words.push(_word);
         }
     }
 
@@ -29,10 +29,59 @@
         '!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\1234567890', //4
         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\', //5
         // ['BB [option] B [option] [space] AAAA'], //5
-        ['BB [option] B [option] [space] AAAA'], //5
+        // 'BB [[option]] B [[option]] [[space]] AAAA', //5
         // '!"#$%&\'()-=^~|`@{[;;;;+::::*]},<.>/?_\\', //10
         // '!"#$%&\'()-=^~|`@{[;;;;+::::*]},<.>/?_\\1234567890', //11
     ]
+
+    // 'BB [[option]] B [[option]] [[space]] AAAA' -> ['BB', '[[option]]', 'B', '[[option]]', '[[space]]', 'AAAA']
+    function createCharactersArray(str){
+        let _str = str;
+        let _arr = [];
+        let _index = 0;
+        while(_index < _str.length){
+            if(_str[_index] === '['){
+                _arr.push(_str.slice(0, _index));
+                _str = _str.slice(_index);
+                _index = _str.indexOf(']') + 1;
+                _arr.push(_str.slice(0, _index));
+                _str = _str.slice(_index);
+                _index = 0;
+            }else{
+                _index++;
+            }
+        }
+        _arr.push(_str);
+        return _arr;
+    }
+
+    // 'BB [[option]] B [[option]] [[space]] AA[AA]AA' -> ['B', 'B', '[[option]]', 'B', '[[option]]', ' [[space]] ', 'A', 'A', '[', 'A', 'A', ']', 'A', 'A']
+    function createCharactersArray2(str){
+        let _str = str;
+        let _arr = [];
+        let _index = 0;
+        while(_index < _str.length){
+            if(_str[_index] === '['){
+                _arr.push(_str.slice(0, _index));
+                _str = _str.slice(_index);
+                _index = _str.indexOf(']') + 1;
+                _arr.push(_str.slice(0, _index));
+                _str = _str.slice(_index);
+                _index = 0;
+            }else{
+                _arr.push(_str[_index]);
+                _index++;
+            }
+        }
+        return _arr;
+    }
+
+
+
+
+
+
+
 
     const dispProblemSet = document.getElementById('disp_problem_set');
     dispProblemSetFunc(dispProblemSet);
