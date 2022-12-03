@@ -31,6 +31,7 @@
         '!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\1234567890', //4
         // 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~¥|`@{[;+:*]},<.>/?_\\', //5
         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\', //5
+        '', //5
         // '\\', //6
         // 'œ∑´®†¥¨', //7
         // 'œ∑´®†¨', //7
@@ -107,6 +108,12 @@
     // document.addEventListener('click', () => {
     target.style.fontSize = "30px";
     document.addEventListener('keydown', e => {
+
+    // console.log(e.key);
+    console.log(`e.key:${e.key}, e.code:${e.code}, e.keyCode:${e.keyCode}`);
+    if(e.key == 'Enter') console.log('Enter is pressed');
+    if(e.key == 'Space') console.log('Space is pressed');
+
         //isPlaying: false, isEnd: false
         if(isPlaying === true || isEnd == true || e.key !== ' '){
             return;
