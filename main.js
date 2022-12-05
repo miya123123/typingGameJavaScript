@@ -34,47 +34,52 @@
         // '!"#$%&\'()-=^~|`@{[;;;;+::::*]},<.>/?_\\1234567890', //11
     ]
 
-    // 'BB [[option]] B [[option]] [[space]] AAAA' -> ['BB', '[[option]]', 'B', '[[option]]', '[[space]]', 'AAAA']
-    function createCharactersArray(str){
-        let _str = str;
-        let _arr = [];
-        let _index = 0;
-        while(_index < _str.length){
-            if(_str[_index] === '['){
-                _arr.push(_str.slice(0, _index));
-                _str = _str.slice(_index);
-                _index = _str.indexOf(']') + 1;
-                _arr.push(_str.slice(0, _index));
-                _str = _str.slice(_index);
-                _index = 0;
-            }else{
-                _index++;
-            }
-        }
-        _arr.push(_str);
-        return _arr;
+    // 'BB [[option]] B [[option]] [[space]] AAAA' -> ['B', 'B', '[[option]]', 'B', '[[option]]', '[[space]]', 'A', 'A', 'A', 'A']
+    // 'BB[[kkd.i,]]CC' -> ['B', 'B', '[[kkd.i,]]', 'C', C']
+    function splitCharacterSet(str) {
+        var result = str;
+        result = splitBySpace(result);
+        result = splitPerOneCharacter(result);
+        return result;
+    }
+    //' [[option]] B [[option]] [[space]] AAAA [[space]] ' -> ['[[option]]', 'B', '[[option]]', '[[space]]', 'AAAA', '[[space]]']
+    function splitBySpace(str) {
+        var result = str;
+        result = str.split(' ');
+        if(result.length > 0 && result[0] == '') result.shift();
+        if(result.length > 0 && result[result.length - 1] == '') result.pop();
+        return result;
     }
 
-    // 'BB [[option]] B [[option]] [[space]] AA[AA]AA' -> ['B', 'B', '[[option]]', 'B', '[[option]]', ' [[space]] ', 'A', 'A', '[', 'A', 'A', ']', 'A', 'A']
-    function createCharactersArray2(str){
-        let _str = str;
-        let _arr = [];
-        let _index = 0;
-        while(_index < _str.length){
-            if(_str[_index] === '['){
-                _arr.push(_str.slice(0, _index));
-                _str = _str.slice(_index);
-                _index = _str.indexOf(']') + 1;
-                _arr.push(_str.slice(0, _index));
-                _str = _str.slice(_index);
-                _index = 0;
+    //['[[option]]', 'B', '[[option]]', '[[space]]', 'AAAA', '[[space]]'] -> ['[[option]]', 'B', '[[option]]', '[[space]]', 'A', 'A', 'A', 'A', '[[space]]']
+    function splitPerOneCharacter(arr) {
+        let result = [];
+        arr.forEach(element => {
+            if(element.length > 4
+                && element[0] == '['
+                && element[1] == '['
+                && element[element.length - 2] == ']'
+                && element[element.length - 1] == ']'){
+                // element = element.slice(2, element.length - 2);
+                result.push(element);
             }else{
-                _arr.push(_str[_index]);
-                _index++;
+                for(let i = 0; i < element.length; i++){
+                    result.push(element[i]);
+                }
             }
-        }
-        return _arr;
+        });
+        return result;
     }
+
+
+    // console.log(splitCharacterSet(''));
+    // console.log(splitCharacterSet(' BB [[option]] B [[option]] [[space]] AAAA'));
+    // console.log(splitCharacterSet(' [[option]] B [[option]] [[space]] AAAA [[space]] '));
+    // console.log(splitCharacterSet('BB[[kkd.i,]]CC'));
+    // console.log(splitCharacterSet('BB [[kkd.i,]]CC'));
+    // console.log(splitCharacterSet('  BB [[kkd.i,]] C[[AAA]]C '));
+    // console.log(splitCharacterSet('  BB [[kkd.i,]] [[AAA]]C '));
+    // console.log(splitCharacterSet('  BB [kkd.i,] [[AAA]]C '));
 
 
 
