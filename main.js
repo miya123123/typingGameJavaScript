@@ -88,10 +88,8 @@
 
 
 
-    const dispProblemSet = document.getElementById('disp_problem_set');
-    dispProblemSetFunc(dispProblemSet);
 
-    function dispProblemSetFunc(dispProblemSet){
+    function dispProblemSetFunc(_dispProblemSet){
         var str = '';
         // str += "Problem set list<br>";
         // str += "<br>";
@@ -109,7 +107,7 @@
         });
         str += "</tbody></table>";
         console.log(str);
-        dispProblemSet.innerHTML = str;
+        _dispProblemSet.innerHTML = str;
     }
 
 
@@ -120,7 +118,8 @@
         }
     }
 
-
+    const dispProblemSet = document.getElementById('disp_problem_set');
+    dispProblemSetFunc(dispProblemSet);
     const words = [];
     let word;
     let startTime;
