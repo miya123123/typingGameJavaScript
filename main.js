@@ -1,25 +1,46 @@
 'use strict'
 {
+    //word:['B', 'A', '[[option]]', '[[space]]', 'A']
     function setWord(){
-        // word = words[Math.floor(Math.random() * words.length)];
         word = words.splice(Math.floor(Math.random() * words.length), 1)[0];
-        target.textContent = word;
+        // target.textContent = word;
+        target.textContent = convertTowardDispString(word);
         loc = 0;
     }
 
+    //array: ['B', 'A', '[[option]]', '[[space]]', 'A']
+    function convertTowardDispString(array){
+        var addedSpaceArray = [];
+        array.forEach(element => {
+            if(element.length == 1){
+                addedSpaceArray.push(element);
+            }else{
+                //'[[option]]' -> ' [[option]] '
+                addedSpaceArray.push(' ' + element + ' ');
+            }
+        });
+        var str = addedSpaceArray.join('');
+        return str;
+    }
+
+    //characterSet: ['BB [[option]] B [[option]] [[space]] AAAA]
+    //characterSetArray: ['B', 'B', '[[option]]', 'B', '[[option]]', '[[space]]', 'A', 'A', 'A', 'A']
+    //words:[['B', 'A', '[[option]]', '[[space]]', 'A'], ['A'], ['B', '[[option]]'], ...]
+    // function createWords(characterSetArray, word_length, words_length){
     function createWords(characterSet, word_length, words_length){
-        let ch;
+        var characterSetArray = splitCharacterSet(characterSet);
+        let str;
         let _word;
         for(let j = 0; j < words_length; j++){
-            _word = '';
+            _word = [];
             for(let i = 0; i < word_length; i++){
-                ch = characterSet[Math.floor(Math.random() * characterSet.length)];
-                _word += ch;
-                // word += 'a';
+                str = characterSetArray[Math.floor(Math.random() * characterSetArray.length)];
+                _word.push(str);
             }
             words.push(_word);
         }
     }
+
 
     const characters = [
         'abcdefghijklmnopqrstuvwxyz', //0
@@ -28,14 +49,24 @@
         '!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\', //3
         '!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\1234567890', //4
         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\', //5
-        // ['BB [option] B [option] [space] AAAA'], //5
         // 'BB [[option]] B [[option]] [[space]] AAAA', //5
         // '!"#$%&\'()-=^~|`@{[;;;;+::::*]},<.>/?_\\', //10
         // '!"#$%&\'()-=^~|`@{[;;;;+::::*]},<.>/?_\\1234567890', //11
+        '[[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', //6
+        '[[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', //6
+        '!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\ [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', //3
+        '!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\1234567890 [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', //4
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\ [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', //5
+
+        // '[[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]] [[F1]] [[F2]] [[F3]] [[F4]] [[F5]]  [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', //6
+        // '[[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', //6
+        // '!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\ [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', //3
+        // '!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\1234567890 [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', //4
+        // 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\ [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', //5
     ]
 
     // 'BB [[option]] B [[option]] [[space]] AAAA' -> ['B', 'B', '[[option]]', 'B', '[[option]]', '[[space]]', 'A', 'A', 'A', 'A']
-    // 'BB[[kkd.i,]]CC' -> ['B', 'B', '[[kkd.i,]]', 'C', C']
+    // 'BB[[kkd.i,]]CC' -> ['B', 'B', '[', '[', 'k', 'k', 'd', '.', 'i', ',', ']', ']', 'C', 'C']
     function splitCharacterSet(str) {
         var result = str;
         result = splitBySpace(result);
@@ -72,23 +103,6 @@
     }
 
 
-    // console.log(splitCharacterSet(''));
-    // console.log(splitCharacterSet(' BB [[option]] B [[option]] [[space]] AAAA'));
-    // console.log(splitCharacterSet(' [[option]] B [[option]] [[space]] AAAA [[space]] '));
-    // console.log(splitCharacterSet('BB[[kkd.i,]]CC'));
-    // console.log(splitCharacterSet('BB [[kkd.i,]]CC'));
-    // console.log(splitCharacterSet('  BB [[kkd.i,]] C[[AAA]]C '));
-    // console.log(splitCharacterSet('  BB [[kkd.i,]] [[AAA]]C '));
-    // console.log(splitCharacterSet('  BB [kkd.i,] [[AAA]]C '));
-
-
-
-
-
-
-
-
-
     function dispProblemSetFunc(_dispProblemSet){
         var str = '';
         // str += "Problem set list<br>";
@@ -110,13 +124,15 @@
         _dispProblemSet.innerHTML = str;
     }
 
-
-
     function dispWords(){
         for(let row = 0; row < words.length; row++){
             console.log(words[row]);
         }
     }
+
+
+
+
 
     const dispProblemSet = document.getElementById('disp_problem_set');
     dispProblemSetFunc(dispProblemSet);
@@ -151,12 +167,30 @@
     const result = document.getElementById('result');
     // document.addEventListener('click', () => {
     target.style.fontSize = "30px";
-    document.addEventListener('keydown', e => {
 
-    // console.log(e.key);
-    console.log(`e.key:${e.key}, e.code:${e.code}, e.keyCode:${e.keyCode}`);
-    if(e.key == 'Enter') console.log('Enter is pressed');
-    if(e.key == 'Space') console.log('Space is pressed');
+// createWords('  BB [[kkd.i,]] [[AAA]]C ', 10, 3);
+// console.log(words);
+// setWord();
+// console.log(word);
+// setWord();
+// console.log(word);
+// setWord();
+// console.log(word);
+
+
+
+
+
+
+
+
+
+
+    document.addEventListener('keydown', e => {
+// console.log(e.key);
+console.log(`e.key:${e.key}, e.code:${e.code}, e.keyCode:${e.keyCode}`);
+if(e.key == 'Enter') console.log('Enter is pressed');
+if(e.key == 'Space') console.log('Space is pressed');
 
         //isPlaying: false, isEnd: false
         if(isPlaying === true || isEnd == true || e.key !== ' '){
@@ -195,66 +229,67 @@
         target.style.fontSize = "48px";
         target.style.color = "black";
     });
-    document.addEventListener('keydown', e => {
-        //isPlaying: true, isEnd: false
-        //early return
-        if(isPlaying === false || isEnd == true){
-            return;
-        }
-        if(e.key !== word[loc]){
-            if(e.key !== "Shift" && e.key != " " && e.key != "Control" && e.key != "Meta" && e.key != "Alt" && e.key != "Tab"){
-                wrongWordFlag = true;
-                wrongCharacterFlag = true;
-                // target.style.color = "red";
-                audioMiss.currentTime = 0;
-                audioMiss.play();
-            }
-            return;
-        }
-        if(!(wrongCharacterFlag)){
-            countCorrectCharacters++;
-        }
-        wrongCharacterFlag = false;
-        audioType.currentTime = 0;
-        audioType.play();
-        loc++;
-        target.textContent = ''.repeat(loc) + word.substring(loc);
-        if(loc === word.length){
-            if(!(wrongWordFlag)){
-                countCorrectWords++;
-            }
-            wrongWordFlag = false;
-            if(words.length === 0){
-                const elapsedTime = ((Date.now() - startTime) / 1000).toFixed(2);
-                // const result = document.getElementById('result');
-                //result.textContent = `Finished! ${elapsedTime} seconds!`;
-                const correctWordsRatio = countCorrectWords / WORDS_LENGTH * 100;
-                const correctCharactersRatio = countCorrectCharacters / TOTAL_CHARACTERS * 100;
-                result.innerHTML = `Finished! ${elapsedTime} seconds!<br><br>` +
-                // `Number of correct words / total words: ${countCorrectWords} / ${WORDS_LENGTH} (${correctWordsRatio.toFixed(2)}%)<br><br>` +
-                `Number of correct problem / total problems: ${countCorrectWords} / ${WORDS_LENGTH} (${correctWordsRatio.toFixed(2)}%)<br><br>` +
-                `Number of correct characters / total characters: ${countCorrectCharacters} / ${TOTAL_CHARACTERS} (${correctCharactersRatio.toFixed(2)}%)<br><br>` +
-                 "<br><br> Press space key to reload!";
-                isEnd = true;
-                return;
-            }
-            setWord();
-        }
-    });
-    document.addEventListener('keydown', e => {
-        //isPlaying: true, isEnd: true
-        if(isPlaying == false || isEnd === false || e.key !== ' '){
-            return;
-        }
-        // location.reload();
-        createWords(characters[PROBLEM_INDEX], WORD_LENGTH, WORDS_LENGTH);
-        startTime = Date.now();
-        isEnd = false;
-        countCorrectCharacters = 0;
-        countCorrectWords = 0;
-        setWord();
-        result.innerHTML = '';
-    });
+
+    // document.addEventListener('keydown', e => {
+    //     //isPlaying: true, isEnd: false
+    //     //early return
+    //     if(isPlaying === false || isEnd == true){
+    //         return;
+    //     }
+    //     if(e.key !== word[loc]){
+    //         if(e.key !== "Shift" && e.key != " " && e.key != "Control" && e.key != "Meta" && e.key != "Alt" && e.key != "Tab"){
+    //             wrongWordFlag = true;
+    //             wrongCharacterFlag = true;
+    //             // target.style.color = "red";
+    //             audioMiss.currentTime = 0;
+    //             audioMiss.play();
+    //         }
+    //         return;
+    //     }
+    //     if(!(wrongCharacterFlag)){
+    //         countCorrectCharacters++;
+    //     }
+    //     wrongCharacterFlag = false;
+    //     audioType.currentTime = 0;
+    //     audioType.play();
+    //     loc++;
+    //     target.textContent = ''.repeat(loc) + word.substring(loc);
+    //     if(loc === word.length){
+    //         if(!(wrongWordFlag)){
+    //             countCorrectWords++;
+    //         }
+    //         wrongWordFlag = false;
+    //         if(words.length === 0){
+    //             const elapsedTime = ((Date.now() - startTime) / 1000).toFixed(2);
+    //             // const result = document.getElementById('result');
+    //             //result.textContent = `Finished! ${elapsedTime} seconds!`;
+    //             const correctWordsRatio = countCorrectWords / WORDS_LENGTH * 100;
+    //             const correctCharactersRatio = countCorrectCharacters / TOTAL_CHARACTERS * 100;
+    //             result.innerHTML = `Finished! ${elapsedTime} seconds!<br><br>` +
+    //             // `Number of correct words / total words: ${countCorrectWords} / ${WORDS_LENGTH} (${correctWordsRatio.toFixed(2)}%)<br><br>` +
+    //             `Number of correct problem / total problems: ${countCorrectWords} / ${WORDS_LENGTH} (${correctWordsRatio.toFixed(2)}%)<br><br>` +
+    //             `Number of correct characters / total characters: ${countCorrectCharacters} / ${TOTAL_CHARACTERS} (${correctCharactersRatio.toFixed(2)}%)<br><br>` +
+    //              "<br><br> Press space key to reload!";
+    //             isEnd = true;
+    //             return;
+    //         }
+    //         setWord();
+    //     }
+    // });
+    // document.addEventListener('keydown', e => {
+    //     //isPlaying: true, isEnd: true
+    //     if(isPlaying == false || isEnd === false || e.key !== ' '){
+    //         return;
+    //     }
+    //     // location.reload();
+    //     createWords(characters[PROBLEM_INDEX], WORD_LENGTH, WORDS_LENGTH);
+    //     startTime = Date.now();
+    //     isEnd = false;
+    //     countCorrectCharacters = 0;
+    //     countCorrectWords = 0;
+    //     setWord();
+    //     result.innerHTML = '';
+    // });
 
 
 
