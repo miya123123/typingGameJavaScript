@@ -50,14 +50,15 @@
         '!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\1234567890', 
         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\', 
 
-        // '[[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', 
+        '[[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', 
 
-        // ' [[F1]] [[F2]] [[F3]] [[F4]] [[F5]]  [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
+        ' [[F1]] [[F2]] [[F3]] [[F4]] [[F5]]  [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
 
-        '[[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]] [[F1]] [[F2]] [[F3]] [[F4]] [[F5]]  [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
+        // '[[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]] [[F1]] [[F2]] [[F3]] [[F4]] [[F5]]  [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
 
         // '!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\1234567890 [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]] [[F1]] [[F2]] [[F3]] [[F4]] [[F5]]  [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
 
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\ [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', 
         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\ [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]  [[F1]] [[F2]] [[F3]] [[F4]] [[F5]]  [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
 
 
@@ -118,15 +119,36 @@
             str += `<tr><td>${i}</td><td class = \"character_set_value\">${element}</td></tr>`;
         });
         str += "</tbody></table>";
-        console.log(str);
+        // console.log(str);
         _dispProblemSet.innerHTML = str;
     }
 
-    function dispWords(){
-        for(let row = 0; row < words.length; row++){
-            console.log(words[row]);
-        }
+    function removeBracket(str){
+        if(str.length == 1)
+            return str;
+        if(str[0] == '[' && str[1] == '[' && str[str.length - 2] == ']' && str[str.length - 1] == ']')
+            return str.slice(2, str.length - 2);
+        console.log("Error: removeBracket");
     }
+
+    // 'MetaLeft' -> 'Meta'
+    function removeLastRightLeft(str){
+        if(str.length == 1)
+            return str;
+        var rightIndex = str.lastIndexOf('Right');
+        if(rightIndex != -1 && rightIndex == str.length - 5)
+            return str.slice(0, rightIndex);
+        var leftIndex = str.lastIndexOf('Left');
+        if(leftIndex != -1 && leftIndex == str.length - 4)
+            return str.slice(0, leftIndex);
+        return str;
+    }
+
+    // function dispWords(){
+    //     for(let row = 0; row < words.length; row++){
+    //         console.log(words[row]);
+    //     }
+    // }
 
 
 
@@ -167,35 +189,15 @@
     // document.addEventListener('click', () => {
     target.style.fontSize = "30px";
 
-// createWords('  BB [[kkd.i,]] [[AAA]]C ', 10, 3);
-// console.log(words);
-// setWord();
-// console.log(word);
-// setWord();
-// console.log(word);
-// setWord();
-// console.log(word);
-
-
-
-
-
-
-
-
-
-
     document.addEventListener('keydown', e => {
 // console.log(e.key);
 console.log(`e.key:${e.key}, e.code:${e.code}, e.keyCode:${e.keyCode}`);
 if(e.key == 'Enter') console.log('Enter is pressed');
 if(e.key == 'Space') console.log('Space is pressed');
-
         //isPlaying: false, isEnd: false
         if(isPlaying === true || isEnd == true || e.key !== ' '){
             return;
         }
-
         var input = document.getElementById("input");
         PROBLEM_INDEX = Number(input.querySelector("input[name=problem_set]").value);
         PROBLEM_INDEX_MAX = characters.length - 1;
@@ -229,66 +231,85 @@ if(e.key == 'Space') console.log('Space is pressed');
         target.style.color = "black";
     });
 
-    // document.addEventListener('keydown', e => {
-    //     //isPlaying: true, isEnd: false
-    //     //early return
-    //     if(isPlaying === false || isEnd == true){
-    //         return;
-    //     }
-    //     if(e.key !== word[loc]){
-    //         if(e.key !== "Shift" && e.key != " " && e.key != "Control" && e.key != "Meta" && e.key != "Alt" && e.key != "Tab"){
-    //             wrongWordFlag = true;
-    //             wrongCharacterFlag = true;
-    //             // target.style.color = "red";
-    //             audioMiss.currentTime = 0;
-    //             audioMiss.play();
-    //         }
-    //         return;
-    //     }
-    //     if(!(wrongCharacterFlag)){
-    //         countCorrectCharacters++;
-    //     }
-    //     wrongCharacterFlag = false;
-    //     audioType.currentTime = 0;
-    //     audioType.play();
-    //     loc++;
-    //     target.textContent = ''.repeat(loc) + word.substring(loc);
-    //     if(loc === word.length){
-    //         if(!(wrongWordFlag)){
-    //             countCorrectWords++;
-    //         }
-    //         wrongWordFlag = false;
-    //         if(words.length === 0){
-    //             const elapsedTime = ((Date.now() - startTime) / 1000).toFixed(2);
-    //             // const result = document.getElementById('result');
-    //             //result.textContent = `Finished! ${elapsedTime} seconds!`;
-    //             const correctWordsRatio = countCorrectWords / WORDS_LENGTH * 100;
-    //             const correctCharactersRatio = countCorrectCharacters / TOTAL_CHARACTERS * 100;
-    //             result.innerHTML = `Finished! ${elapsedTime} seconds!<br><br>` +
-    //             // `Number of correct words / total words: ${countCorrectWords} / ${WORDS_LENGTH} (${correctWordsRatio.toFixed(2)}%)<br><br>` +
-    //             `Number of correct problem / total problems: ${countCorrectWords} / ${WORDS_LENGTH} (${correctWordsRatio.toFixed(2)}%)<br><br>` +
-    //             `Number of correct characters / total characters: ${countCorrectCharacters} / ${TOTAL_CHARACTERS} (${correctCharactersRatio.toFixed(2)}%)<br><br>` +
-    //              "<br><br> Press space key to reload!";
-    //             isEnd = true;
-    //             return;
-    //         }
-    //         setWord();
-    //     }
-    // });
-    // document.addEventListener('keydown', e => {
-    //     //isPlaying: true, isEnd: true
-    //     if(isPlaying == false || isEnd === false || e.key !== ' '){
-    //         return;
-    //     }
-    //     // location.reload();
-    //     createWords(characters[PROBLEM_INDEX], WORD_LENGTH, WORDS_LENGTH);
-    //     startTime = Date.now();
-    //     isEnd = false;
-    //     countCorrectCharacters = 0;
-    //     countCorrectWords = 0;
-    //     setWord();
-    //     result.innerHTML = '';
-    // });
+
+
+
+    document.addEventListener('keydown', e => {
+        //isPlaying: true, isEnd: false
+        if(isPlaying === false || isEnd == true){
+            return;
+        }
+        // console.log(removeBracket('[[AltLeft]]'));
+        // console.log(removeBracket('['));
+        // console.log(removeLastRightLeft('AltLeft'));
+        // console.log(removeLastRightLeft('Alt'));
+        // console.log(removeLastRightLeft('[[AltLeft]]'));
+        // console.log(removeLastRightLeft('['));
+        // if(e.key !== word[loc]){
+
+        {
+            //'[[MetaLeft]]' -> 'Meta'
+            //'[[Meta]]' -> 'Meta'
+            //'[' -> '['
+            word[loc] = removeBracket(word[loc]);
+            word[loc] = removeLastRightLeft(word[loc]);
+        }
+
+        // if(e.key !== removeBracket(word[loc])){
+        if(e.key !== word[loc]){
+            if(e.key !== "Shift" && e.key != " " && e.key != "Control" && e.key != "Meta" && e.key != "Alt" && e.key != "Tab"){
+                wrongWordFlag = true;
+                wrongCharacterFlag = true;
+                // target.style.color = "red";
+                audioMiss.currentTime = 0;
+                audioMiss.play();
+            }
+            return;
+        }
+        if(!(wrongCharacterFlag)){
+            countCorrectCharacters++;
+        }
+        wrongCharacterFlag = false;
+        audioType.currentTime = 0;
+        audioType.play();
+        loc++;
+        target.textContent = ''.repeat(loc) + word.substring(loc);
+        if(loc === word.length){
+            if(!(wrongWordFlag)){
+                countCorrectWords++;
+            }
+            wrongWordFlag = false;
+            if(words.length === 0){
+                const elapsedTime = ((Date.now() - startTime) / 1000).toFixed(2);
+                // const result = document.getElementById('result');
+                //result.textContent = `Finished! ${elapsedTime} seconds!`;
+                const correctWordsRatio = countCorrectWords / WORDS_LENGTH * 100;
+                const correctCharactersRatio = countCorrectCharacters / TOTAL_CHARACTERS * 100;
+                result.innerHTML = `Finished! ${elapsedTime} seconds!<br><br>` +
+                // `Number of correct words / total words: ${countCorrectWords} / ${WORDS_LENGTH} (${correctWordsRatio.toFixed(2)}%)<br><br>` +
+                `Number of correct problem / total problems: ${countCorrectWords} / ${WORDS_LENGTH} (${correctWordsRatio.toFixed(2)}%)<br><br>` +
+                `Number of correct characters / total characters: ${countCorrectCharacters} / ${TOTAL_CHARACTERS} (${correctCharactersRatio.toFixed(2)}%)<br><br>` +
+                 "<br><br> Press space key to reload!";
+                isEnd = true;
+                return;
+            }
+            setWord();
+        }
+    });
+    document.addEventListener('keydown', e => {
+        //isPlaying: true, isEnd: true
+        if(isPlaying == false || isEnd === false || e.key !== ' '){
+            return;
+        }
+        // location.reload();
+        createWords(characters[PROBLEM_INDEX], WORD_LENGTH, WORDS_LENGTH);
+        startTime = Date.now();
+        isEnd = false;
+        countCorrectCharacters = 0;
+        countCorrectWords = 0;
+        setWord();
+        result.innerHTML = '';
+    });
 
 
 

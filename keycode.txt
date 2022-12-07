@@ -13,7 +13,7 @@ e.key:Alt, e.code:AltRight, e.keyCode:18
 e.key:Meta, e.code:MetaLeft, e.keyCode:91
 e.key:Meta, e.code:MetaRight, e.keyCode:93
 e.key:Escape, e.code:Escape, e.keyCode:27
-e.key:Backspace, e.code:Backspace, e.keyCode:8
+e.key:Backspace, e.code:Backspace, e.keyCode:7
 e.key:Enter, e.code:Enter, e.keyCode:13
 e.key:ArrowLeft, e.code:ArrowLeft, e.keyCode:37
 e.key:ArrowUp, e.code:ArrowUp, e.keyCode:38
