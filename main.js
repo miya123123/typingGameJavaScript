@@ -124,6 +124,7 @@
     }
 
     function removeBracket(str){
+console.log(str);
         if(str.length == 1)
             return str;
         if(str[0] == '[' && str[1] == '[' && str[str.length - 2] == ']' && str[str.length - 1] == ']')
@@ -133,6 +134,7 @@
 
     // 'MetaLeft' -> 'Meta'
     function removeLastRightLeft(str){
+console.log(str);
         if(str.length == 1)
             return str;
         var rightIndex = str.lastIndexOf('Right');
@@ -234,6 +236,18 @@ if(e.key == 'Space') console.log('Space is pressed');
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
     document.addEventListener('keydown', e => {
         //isPlaying: true, isEnd: false
         if(isPlaying === false || isEnd == true){
@@ -246,24 +260,38 @@ if(e.key == 'Space') console.log('Space is pressed');
         // console.log(removeLastRightLeft('[[AltLeft]]'));
         // console.log(removeLastRightLeft('['));
         // if(e.key !== word[loc]){
-
+        var ch = '';
         {
+console.log(word[loc]);
             //'[[MetaLeft]]' -> 'Meta'
             //'[[Meta]]' -> 'Meta'
             //'[' -> '['
             word[loc] = removeBracket(word[loc]);
+console.log(word[loc]);
             word[loc] = removeLastRightLeft(word[loc]);
+console.log(word[loc]);
         }
+
+
+
+
+
+
+
+
+
+
+
 
         // if(e.key !== removeBracket(word[loc])){
         if(e.key !== word[loc]){
-            if(e.key !== "Shift" && e.key != " " && e.key != "Control" && e.key != "Meta" && e.key != "Alt" && e.key != "Tab"){
+            // if(e.key !== "Shift" && e.key != " " && e.key != "Control" && e.key != "Meta" && e.key != "Alt" && e.key != "Tab"){
                 wrongWordFlag = true;
                 wrongCharacterFlag = true;
                 // target.style.color = "red";
                 audioMiss.currentTime = 0;
                 audioMiss.play();
-            }
+            // }
             return;
         }
         if(!(wrongCharacterFlag)){
