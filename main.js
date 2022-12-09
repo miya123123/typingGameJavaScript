@@ -8,7 +8,7 @@
         loc = 0;
     }
 
-    //array: ['B', 'A', '[[option]]', '[[space]]', 'A']
+    //['B', 'A', '[[option]]', '[[space]]', 'A'] -> 'BA [[option]] A'
     function convertTowardDispString(array){
         var addedSpaceArray = [];
         array.forEach(element => {
@@ -50,16 +50,16 @@
         '!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\1234567890', 
         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\', 
 
-        '[[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', 
+        '[[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', 
 
         ' [[F1]] [[F2]] [[F3]] [[F4]] [[F5]]  [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
 
-        // '[[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]] [[F1]] [[F2]] [[F3]] [[F4]] [[F5]]  [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
+        // '[[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]] [[F1]] [[F2]] [[F3]] [[F4]] [[F5]]  [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
 
-        // '!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\1234567890 [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]] [[F1]] [[F2]] [[F3]] [[F4]] [[F5]]  [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
+        // '!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\1234567890 [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]] [[F1]] [[F2]] [[F3]] [[F4]] [[F5]]  [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
 
-        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\ [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', 
-        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\ [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]  [[F1]] [[F2]] [[F3]] [[F4]] [[F5]]  [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\ [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', 
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\ [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]  [[F1]] [[F2]] [[F3]] [[F4]] [[F5]]  [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
 
 
     ]
@@ -302,7 +302,10 @@ console.log(ch);
         audioType.currentTime = 0;
         audioType.play();
         loc++;
-        target.textContent = ''.repeat(loc) + word.substring(loc);
+        // target.textContent = ''.repeat(loc) + word.substring(loc);
+        // target.textContent = ''.repeat(loc) + word.slice(loc);
+        // target.textContent = ''.repeat(loc) + word.slice(loc).join('');
+        target.textContent = word.slice(loc).join('');
         if(loc === word.length){
             if(!(wrongWordFlag)){
                 countCorrectWords++;
