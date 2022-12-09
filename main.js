@@ -123,28 +123,54 @@
         _dispProblemSet.innerHTML = str;
     }
 
+//     function removeBracket(str){
+// console.log(str);
+//         if(str.length == 1)
+//             return str;
+//         if(str[0] == '[' && str[1] == '[' && str[str.length - 2] == ']' && str[str.length - 1] == ']')
+//             return str.slice(2, str.length - 2);
+//         console.log("Error: removeBracket");
+//     }
+    // '[[MetaLeft]]' -> 'MetaLeft'
     function removeBracket(str){
-console.log(str);
-        if(str.length == 1)
-            return str;
-        if(str[0] == '[' && str[1] == '[' && str[str.length - 2] == ']' && str[str.length - 1] == ']')
-            return str.slice(2, str.length - 2);
+        var result = str;
+        if(result.length == 1)
+            return result;
+        if(result[0] == '[' && result[1] == '[' && result[result.length - 2] == ']' && result[result.length - 1] == ']')
+            return result.slice(2, result.length - 2);
         console.log("Error: removeBracket");
     }
 
     // 'MetaLeft' -> 'Meta'
+//     function removeLastRightLeft(str){
+// console.log(str);
+//         if(str.length == 1)
+//             return str;
+//         var rightIndex = str.lastIndexOf('Right');
+//         if(rightIndex != -1 && rightIndex == str.length - 5)
+//             return str.slice(0, rightIndex);
+//         var leftIndex = str.lastIndexOf('Left');
+//         if(leftIndex != -1 && leftIndex == str.length - 4)
+//             return str.slice(0, leftIndex);
+//         return str;
+//     }
+    // 'MetaLeft' -> 'Meta'
     function removeLastRightLeft(str){
-console.log(str);
-        if(str.length == 1)
-            return str;
-        var rightIndex = str.lastIndexOf('Right');
-        if(rightIndex != -1 && rightIndex == str.length - 5)
-            return str.slice(0, rightIndex);
-        var leftIndex = str.lastIndexOf('Left');
-        if(leftIndex != -1 && leftIndex == str.length - 4)
-            return str.slice(0, leftIndex);
-        return str;
+        var result = str;
+        if(result.length == 1)
+            return result;
+        var rightIndex = result.lastIndexOf('Right');
+        if(rightIndex != -1 && rightIndex == result.length - 5)
+            return result.slice(0, rightIndex);
+        var leftIndex = result.lastIndexOf('Left');
+        if(leftIndex != -1 && leftIndex == result.length - 4)
+            return result.slice(0, leftIndex);
+        return result;
     }
+
+    // function removeBracketAndLastRightLeft(str){
+    //     return removeLastRightLeft(removeBracket(str));
+    // }
 
     // function dispWords(){
     //     for(let row = 0; row < words.length; row++){
@@ -253,38 +279,13 @@ if(e.key == 'Space') console.log('Space is pressed');
         if(isPlaying === false || isEnd == true){
             return;
         }
-        // console.log(removeBracket('[[AltLeft]]'));
-        // console.log(removeBracket('['));
-        // console.log(removeLastRightLeft('AltLeft'));
-        // console.log(removeLastRightLeft('Alt'));
-        // console.log(removeLastRightLeft('[[AltLeft]]'));
-        // console.log(removeLastRightLeft('['));
+        
+        var ch = removeLastRightLeft(removeBracket(word[loc]));
+console.log(ch);
+
+
         // if(e.key !== word[loc]){
-        var ch = '';
-        {
-console.log(word[loc]);
-            //'[[MetaLeft]]' -> 'Meta'
-            //'[[Meta]]' -> 'Meta'
-            //'[' -> '['
-            word[loc] = removeBracket(word[loc]);
-console.log(word[loc]);
-            word[loc] = removeLastRightLeft(word[loc]);
-console.log(word[loc]);
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-        // if(e.key !== removeBracket(word[loc])){
-        if(e.key !== word[loc]){
+        if(e.key !== ch){
             // if(e.key !== "Shift" && e.key != " " && e.key != "Control" && e.key != "Meta" && e.key != "Alt" && e.key != "Tab"){
                 wrongWordFlag = true;
                 wrongCharacterFlag = true;
