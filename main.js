@@ -207,7 +207,8 @@
     document.addEventListener('keydown', e => {
 // console.log(`e.key:${e.key}, e.code:${e.code}, e.keyCode:${e.keyCode}`);
         //isPlaying: false, isEnd: false
-        if(isPlaying === true || isEnd == true || e.key !== ' '){
+        // if(isPlaying === true || isEnd == true || e.key !== ' '){
+        if(isPlaying === true || isEnd == true || e.key !== 'Shift'){
             return;
         }
         var input = document.getElementById("input");
@@ -278,6 +279,9 @@
                 // target.style.color = "red";
                 audioMiss.currentTime = 0;
                 audioMiss.play();
+console.log(1111111111);
+console.log(e.key);
+console.log(22222222);
             }
             return;
         }
@@ -308,7 +312,8 @@
                 // `Number of correct words / total words: ${countCorrectWords} / ${WORDS_LENGTH} (${correctWordsRatio.toFixed(2)}%)<br><br>` +
                 `Number of correct problem / total problems: ${countCorrectWords} / ${WORDS_LENGTH} (${correctWordsRatio.toFixed(2)}%)<br><br>` +
                 `Number of correct characters / total characters: ${countCorrectCharacters} / ${TOTAL_CHARACTERS} (${correctCharactersRatio.toFixed(2)}%)<br><br>` +
-                 "<br><br> Press space key to reload!";
+                //  "<br><br> Press space key to reload!";
+                 "<br><br> Press shift key to reload!";
                 isEnd = true;
                 return;
             }
@@ -317,7 +322,8 @@
     });
     document.addEventListener('keydown', e => {
         //isPlaying: true, isEnd: true
-        if(isPlaying == false || isEnd === false || e.key !== ' '){
+        // if(isPlaying == false || isEnd === false || e.key !== ' '){
+        if(isPlaying == false || isEnd === false || e.key !== 'Shift'){
             return;
         }
         // location.reload();
