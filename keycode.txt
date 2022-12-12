@@ -21,3 +21,4 @@ e.key:ArrowRight, e.code:ArrowRight, e.keyCode:39
 e.key:ArrowDown, e.code:ArrowDown, e.keyCode:40
 e.key:F5, e.code:F5, e.keyCode:116
 e.key:F4, e.code:F4, e.keyCode:115
+e.key: , e.code:Space, e.keyCode:32

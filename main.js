@@ -50,16 +50,19 @@
         '!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\1234567890', 
         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\', 
 
-        '[[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', 
+        '[[AltLeft]] [[AltRight]] [[Space]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]]', 
 
-        ' [[F1]] [[F2]] [[F3]] [[F4]] [[F5]]  [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
+        // '[[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', 
+
+        '[[F1]] [[F2]] [[F3]] [[F4]] [[F5]] [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
 
         // '[[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]] [[F1]] [[F2]] [[F3]] [[F4]] [[F5]]  [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
 
         // '!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\1234567890 [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]] [[F1]] [[F2]] [[F3]] [[F4]] [[F5]]  [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
 
-        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\ [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', 
-        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\ [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]  [[F1]] [[F2]] [[F3]] [[F4]] [[F5]]  [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
+        // 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\ [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', 
+        // 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\ [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]  [[F1]] [[F2]] [[F3]] [[F4]] [[F5]]  [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\ [[AltLeft]] [[AltRight]] [[Space]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]]', 
 
 
     ]
@@ -123,14 +126,6 @@
         _dispProblemSet.innerHTML = str;
     }
 
-//     function removeBracket(str){
-// console.log(str);
-//         if(str.length == 1)
-//             return str;
-//         if(str[0] == '[' && str[1] == '[' && str[str.length - 2] == ']' && str[str.length - 1] == ']')
-//             return str.slice(2, str.length - 2);
-//         console.log("Error: removeBracket");
-//     }
     // '[[MetaLeft]]' -> 'MetaLeft'
     function removeBracket(str){
         var result = str;
@@ -142,22 +137,20 @@
     }
 
     // 'MetaLeft' -> 'Meta'
-//     function removeLastRightLeft(str){
-// console.log(str);
-//         if(str.length == 1)
-//             return str;
-//         var rightIndex = str.lastIndexOf('Right');
-//         if(rightIndex != -1 && rightIndex == str.length - 5)
-//             return str.slice(0, rightIndex);
-//         var leftIndex = str.lastIndexOf('Left');
-//         if(leftIndex != -1 && leftIndex == str.length - 4)
-//             return str.slice(0, leftIndex);
-//         return str;
-//     }
-    // 'MetaLeft' -> 'Meta'
+    // 'MetaRight' -> 'Meta'
+    // 'AltLeft' -> 'Alt'
+    // 'AltRight' -> 'Alt'
+    // 'ControlLeft' -> 'Control'
+    // 'ControlRight' -> 'Control'
+    // 'ArrowLeft' -> 'ArrowLeft'
+    // 'ArrowRight' -> 'ArrowRight'
+    // 'Meta' -> 'Meta'
+    // '[' -> '['
     function removeLastRightLeft(str){
         var result = str;
         if(result.length == 1)
+            return result;
+        if(result == 'ArrowLeft' || result == 'ArrowRight')
             return result;
         var rightIndex = result.lastIndexOf('Right');
         if(rightIndex != -1 && rightIndex == result.length - 5)
@@ -168,20 +161,13 @@
         return result;
     }
 
-    // function removeBracketAndLastRightLeft(str){
-    //     return removeLastRightLeft(removeBracket(str));
-    // }
-
-    // function dispWords(){
-    //     for(let row = 0; row < words.length; row++){
-    //         console.log(words[row]);
-    //     }
-    // }
-
-
-
-
-    // console.log(splitCharacterSet('[[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[BackSpace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]] [[F1]] [[F2]] [[F3]] [[F4]] [[F5]] [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]'));
+    // 'Space' -> ' '
+    function convertSpaceString(str){
+        var result = str;
+        if(result == 'Space')
+            return ' ';
+        return result;
+    }
 
     const dispProblemSet = document.getElementById('disp_problem_set');
     dispProblemSetFunc(dispProblemSet);
@@ -218,10 +204,7 @@
     target.style.fontSize = "30px";
 
     document.addEventListener('keydown', e => {
-// console.log(e.key);
-console.log(`e.key:${e.key}, e.code:${e.code}, e.keyCode:${e.keyCode}`);
-if(e.key == 'Enter') console.log('Enter is pressed');
-if(e.key == 'Space') console.log('Space is pressed');
+// console.log(`e.key:${e.key}, e.code:${e.code}, e.keyCode:${e.keyCode}`);
         //isPlaying: false, isEnd: false
         if(isPlaying === true || isEnd == true || e.key !== ' '){
             return;
@@ -280,19 +263,21 @@ if(e.key == 'Space') console.log('Space is pressed');
             return;
         }
         
-        var ch = removeLastRightLeft(removeBracket(word[loc]));
-console.log(ch);
+        // var ch = removeLastRightLeft(removeBracket(word[loc]));
+        var ch = convertSpaceString(removeLastRightLeft(removeBracket(word[loc])));
+// console.log(ch);
 
 
         // if(e.key !== word[loc]){
         if(e.key !== ch){
             // if(e.key !== "Shift" && e.key != " " && e.key != "Control" && e.key != "Meta" && e.key != "Alt" && e.key != "Tab"){
+            if(e.key !== "Shift"){
                 wrongWordFlag = true;
                 wrongCharacterFlag = true;
                 // target.style.color = "red";
                 audioMiss.currentTime = 0;
                 audioMiss.play();
-            // }
+            }
             return;
         }
         if(!(wrongCharacterFlag)){
@@ -305,7 +290,8 @@ console.log(ch);
         // target.textContent = ''.repeat(loc) + word.substring(loc);
         // target.textContent = ''.repeat(loc) + word.slice(loc);
         // target.textContent = ''.repeat(loc) + word.slice(loc).join('');
-        target.textContent = word.slice(loc).join('');
+        // target.textContent = word.slice(loc).join('');
+        target.textContent = convertTowardDispString(word.slice(loc));
         if(loc === word.length){
             if(!(wrongWordFlag)){
                 countCorrectWords++;
