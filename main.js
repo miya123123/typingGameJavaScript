@@ -54,7 +54,8 @@
 
         // '[[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', 
 
-        '[[F1]] [[F2]] [[F3]] [[F4]] [[F5]] [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
+        '[[F1]] [[F2]] [[F3]] [[F4]] [[F5]] [[F6]] [[F7]] [[F8]] [[F9]] [[F10]]', 
+        // '[[F1]] [[F2]] [[F3]] [[F4]] [[F5]] [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
 
         // '[[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]] [[F1]] [[F2]] [[F3]] [[F4]] [[F5]]  [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
 
