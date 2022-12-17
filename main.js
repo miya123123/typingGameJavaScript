@@ -50,9 +50,11 @@
         '!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\1234567890', 
         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\', 
 
-        '[[AltLeft]] [[AltRight]] [[Space]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]]', 
+        // '[[AltLeft]] [[AltRight]] [[Space]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]]', 
 
         // '[[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', 
+
+        '[[OptionLeft]] [[OptionRight]] [[Space]] [[CommandLeft]] [[CommandRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]]', 
 
         '[[F1]] [[F2]] [[F3]] [[F4]] [[F5]] [[F6]] [[F7]] [[F8]] [[F9]] [[F10]]', 
         // '[[F1]] [[F2]] [[F3]] [[F4]] [[F5]] [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
@@ -63,8 +65,10 @@
 
         // 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\ [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]', 
         // 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\ [[AltLeft]] [[AltRight]] [[Space]] [[Tab]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[ShiftLeft]] [[ShiftRight]]  [[F1]] [[F2]] [[F3]] [[F4]] [[F5]]  [[F6]] [[F7]] [[F8]] [[F9]] [[F10]] [[F11]] [[F12]]', 
-        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\ [[AltLeft]] [[AltRight]] [[Space]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]]', 
+        // 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\ [[AltLeft]] [[AltRight]] [[Space]] [[MetaLeft]] [[MetaRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]]', 
 
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\ [[OptionLeft]] [[OptionRight]] [[Space]] [[CommandLeft]] [[CommandRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]]', 
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$%&\'()-=^~|`@{[;+:*]},<.>/?_\\ [[OptionLeft]] [[OptionRight]] [[Space]] [[CommandLeft]] [[CommandRight]] [[ControlLeft]] [[ControlRight]] [[Escape]] [[Backspace]] [[Enter]] [[ArrowLeft]] [[ArrowRight]] [[ArrowUp]] [[ArrowDown]] [[F1]] [[F2]] [[F3]] [[F4]] [[F5]] [[F6]] [[F7]] [[F8]] [[F9]] [[F10]]', 
 
     ]
 
@@ -144,7 +148,7 @@
     // 'ControlLeft' -> 'Control'
     // 'ControlRight' -> 'Control'
     // 'ArrowLeft' -> 'ArrowLeft'
-    // 'ArrowRight' -> 'ArrowRight'
+    // 'ArrowRight' -> 'ArrowRightk'
     // 'Meta' -> 'Meta'
     // '[' -> '['
     function removeLastRightLeft(str){
@@ -162,6 +166,10 @@
         return result;
     }
 
+
+
+
+
     // 'Space' -> ' '
     function convertSpaceString(str){
         var result = str;
@@ -169,6 +177,37 @@
             return ' ';
         return result;
     }
+    // "command" -> "Meta"
+    function convertCommandString(str){
+        var result = str;
+        if(result == 'Command')
+            return 'Meta';
+        return result;
+    }
+    // "option" -> "Alt"
+    function convertOptionString(str){
+        var result = str;
+        if(result == 'Option')
+            return 'Alt';
+        return result;
+    }
+
+    // // "Meta" -> "Command"
+    // function convertMetaString(str){
+    //     var result = str;
+    //     if(result == 'Meta')
+    //         return 'Command';
+    //     return result;
+    // }
+    // // "Alt" -> "Option"
+    // function convertAltString(str){
+    //     var result = str;
+    //     if(result == 'Alt')
+    //         return 'Option';
+    //     return result;
+    // }
+
+
 
     const dispProblemSet = document.getElementById('disp_problem_set');
     dispProblemSetFunc(dispProblemSet);
@@ -265,9 +304,13 @@
             return;
         }
         
-        // var ch = removeLastRightLeft(removeBracket(word[loc]));
-        var ch = convertSpaceString(removeLastRightLeft(removeBracket(word[loc])));
-// console.log(ch);
+        // var ch = convertSpaceString(removeLastRightLeft(removeBracket(word[loc])));
+        var ch = removeBracket(word[loc]);
+        ch = removeLastRightLeft(ch);
+        ch = convertSpaceString(ch);
+        ch = convertCommandString(ch);
+        ch = convertOptionString(ch);
+console.log(ch);
 
 
         // if(e.key !== word[loc]){
@@ -279,9 +322,9 @@
                 // target.style.color = "red";
                 audioMiss.currentTime = 0;
                 audioMiss.play();
-console.log(1111111111);
-console.log(e.key);
-console.log(22222222);
+// console.log(1111111111);
+// console.log(e.key);
+// console.log(22222222);
             }
             return;
         }
